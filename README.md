@@ -9,7 +9,7 @@ This repo includes:
 - generic_video_downloader.py – universal downloader (YouTube, Google Drive, generic via Selenium)
 - transcribe.py – transcribes audio/video to text using faster-whisper
 - refine_transcription.py – refines raw transcript using google-generativeai
-- download_and_transcribe – one-shot bash script that chains everything
+- download_and_transcribe.sh – one-shot bash script that chains everything
 - requirements.txt – Python dependencies
 
 ## Quick start
@@ -60,14 +60,14 @@ setx GOOGLE_API_KEY "YOUR_KEY"
 There are three common ways to run the pipeline.
 
 1) One-shot: download, transcribe, refine
-- Script: download_and_transcribe
+- Script: download_and_transcribe.sh
 - Usage:
 ```bash
 # Make executable on macOS/Linux
-chmod +x download_and_transcribe
+chmod +x download_and_transcribe.sh
 
 # Run: provide a video URL and optional output filename for the refined transcript
-./download_and_transcribe "https://www.youtube.com/watch?v=..." refined_transcription.txt
+./download_and_transcribe.sh "https://www.youtube.com/watch?v=..." refined_transcription.txt
 ```
 What it does:
 - Creates a temporary working directory
@@ -133,7 +133,7 @@ python refine_transcription.py raw_transcription.txt refined_transcription.txt
   - Uses google-generativeai (Gemini) with model "gemini-2.5-flash"
   - Writes refined output to a specified file
 
-- download_and_transcribe
+- download_and_transcribe.sh
   - Bash script that chains the above steps end-to-end
 
 ## Requirements
@@ -217,7 +217,7 @@ export GOOGLE_API_KEY="YOUR_KEY"
 google-chrome --remote-debugging-port=9222
 
 # 2) Run one-shot pipeline
-./download_and_transcribe "https://www.youtube.com/watch?v=dQw4w9WgXcQ" my_refined.txt
+./download_and_transcribe.sh "https://www.youtube.com/watch?v=dQw4w9WgXcQ" my_refined.txt
 
 # 3) View result
 cat my_refined.txt
